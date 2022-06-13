@@ -1,20 +1,31 @@
 using FinalProject_KhatiashviliGoga;
+using FinalProject_KhatiashviliGoga.Interfaces;
+using FinalProject_KhatiashviliGoga.Mapping;
+using FinalProject_KhatiashviliGoga.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("FinalProject_KhatiashviliGoga") ?? throw new InvalidOperationException("Connection string 'FinalProject_KhatiashviliGoga' not found.");
+
+builder.Services.AddScoped<IOrganizationService, OrganizationService>();
+builder.Services.AddScoped<IMapper<FinalProject_KhatiashviliGoga.Entities.Organization, FinalProject_KhatiashviliGoga.Models.OrganizationModel>, OrganizationMapper>();
+
+
+builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IMapper<FinalProject_KhatiashviliGoga.Entities.Person, FinalProject_KhatiashviliGoga.Models.PersonModel>, PersonMapper>();
+
+
+
+builder.Services.AddDbContext<FinalProject_KhatiashviliGogaContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+   // .AddEntityFrameworkStores<MyFirstProjectMVC1Context>();;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<FinalProject_KhatiashviliGogaContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("FinalProject_KhatiashviliGoga")));
+
 var app = builder.Build();
-
-
-using (var scope = app.Services.CreateScope())
-{
-    using var dbContext = scope.ServiceProvider.GetRequiredService<FinalProject_KhatiashviliGogaContext>();
-    dbContext.Database.Migrate();
-}
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -24,13 +35,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
@@ -38,4 +47,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+
+
+
 app.Run();
+

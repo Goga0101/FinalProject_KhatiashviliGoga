@@ -1,0 +1,104 @@
+﻿@@model IEnumerable<FinalProject_KhatiashviliGoga.Entities.Person >
+
+@{
+    ViewData["Title"] = "All Persons";
+}
+
+<div class="text-center">
+    <h1 class="display-4">All Persons</h1>
+</div>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Person List</h2>
+        </div>
+          <div class="col-6 text-end">
+            <a asp-controller="Person" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Person
+            </a>
+        </div>
+    </div>
+    <br /><br />
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>
+                Person Id
+            </th>
+            <th>
+                Person Name
+            </th>
+            <th>
+                Person LastName
+            </th>
+            <th>
+                Person DateOfBirth
+            </th>
+            <th>
+                Person Image
+            </th>
+            <th>
+                Person Language
+            </th>
+            <th>
+                Person PersonalNumber
+            </th>
+              <th>
+                Person OrganizationId
+            </th>
+              <th>
+                Person Organization
+            </th>
+
+            <th>Commands </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td width="40%">
+                    @obj.Id
+                </td>
+                <td width="40%">
+                    @obj.Name
+                </td>
+                <td width="20%">
+                    @obj.LastName
+                </td>
+                <td width="40%">
+                    @obj.DateOfBirth
+                </td>
+                <td width="40%">
+                    @obj.Image
+                </td>
+                <td width="40%">
+                    @obj.Language
+                </td>
+                <td width="40%">
+                    @obj.PersonalNumber
+                </td>
+                <td width="40%">
+                    @obj.OrganizationId
+
+                </td>
+                 <td width="40%">
+                    @obj.Organization
+
+                </td>
+                 <td>
+                   @* <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Organization" asp-action="Edit" asp-route-id="@obj.Id"
+                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                        <a asp-controller="Organization" asp-action="Delete" asp-route-id="@obj.Id"
+                           class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                    </div>*@
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
