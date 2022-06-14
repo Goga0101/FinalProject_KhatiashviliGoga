@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject_KhatiashviliGoga.Migrations
 {
     [DbContext(typeof(FinalProject_KhatiashviliGogaContext))]
-    [Migration("20220611102329_Alter_PersonAddMaxLengthAndMinLength")]
-    partial class Alter_PersonAddMaxLengthAndMinLength
+    [Migration("20220614193917_InicialCreate")]
+    partial class InicialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,9 +77,9 @@ namespace FinalProject_KhatiashviliGoga.Migrations
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PersonalNumber")
+                    b.Property<Guid>("PersonalNumber")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

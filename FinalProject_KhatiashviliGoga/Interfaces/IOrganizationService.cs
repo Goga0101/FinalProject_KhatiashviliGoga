@@ -8,5 +8,8 @@ namespace FinalProject_KhatiashviliGoga.Interfaces
         IEnumerable<Organization> GetOrganizations();
         GetOrganizationResponse GetOrganization(GetOrganizationRequest request);
         CreateOrganizationResponse CreateOrganization(OrganizationModel request);
+
+        UpdateOrganizationResponse UpdateOrganization(UpdateOrganizationRequest request);
+        DeleteOrganizationResponse DeleteOrganization(DeleteOrganizationRequest request);
     }
 }

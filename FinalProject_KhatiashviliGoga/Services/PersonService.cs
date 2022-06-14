@@ -49,6 +49,37 @@ namespace FinalProject_KhatiashviliGoga.Services
         }
 
 
+        public UpdatePersonResponse UpdatePerson(UpdatePersonRequest updatePersonRequest)
+        {
+            var existingPersonToUpdate = _context.Persons.Find(updatePersonRequest.PersonToUpdate.Id);
+
+            if (existingPersonToUpdate == null)
+            {
+                throw new DbUpdateException($"Person with Id {updatePersonRequest.PersonToUpdate.Id} does not exist ");
+            }
+
+            _personMapper.MapFromModelToEntity(updatePersonRequest.PersonToUpdate, existingPersonToUpdate);
+            _context.SaveChanges();
+
+            return new UpdatePersonResponse { UpdatedPerson = updatePersonRequest.PersonToUpdate };
+        }
+
+        public DeletePersonResponse DeletePerson(DeletePersonRequest deletePersonRequest)
+        {
+            var personToDelete = _context.Persons.Find(deletePersonRequest.Id);
+            if (personToDelete == null)
+            {
+                throw new DbUpdateException($"Person with id '{deletePersonRequest.Id}' doesn't exist.");
+            }
+
+            _context.Persons.Remove(personToDelete);
+            _context.SaveChanges();
+
+            return new DeletePersonResponse();
+        }
+
+
+
         public IEnumerable<Person> GetPersons()
         {    
               return _context.Persons;

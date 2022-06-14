@@ -48,13 +48,13 @@ namespace FinalProject_KhatiashviliGoga.Controllers
 
 
         //GET
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(Guid? id)
         {
-            if (id == null || id == 0)
+            if (id == null || id == Guid.Empty)
             {
                 return NotFound();
             }
-            var getPersonResponse = _personService.GetPerson(new GetPersonRequest() { Id = (int)id });
+            var getPersonResponse = _personService.GetPerson(new GetPersonRequest() { Id = (Guid)id });
 
             if (getPersonResponse == null)
             {
@@ -63,6 +63,50 @@ namespace FinalProject_KhatiashviliGoga.Controllers
 
             return View(getPersonResponse.Person);
         }
+
+
+
+        //POST
+        [HttpPost]
+        public IActionResult Edit(PersonModel person)
+        {
+            if (ModelState.IsValid)
+            {
+                _personService.UpdatePerson(new UpdatePersonRequest() { PersonToUpdate = person });
+                return RedirectToAction("AllPersons");
+            }
+            return View(person);
+        }
+
+        public IActionResult Delete(Guid? id)
+        {
+            if (id == null || id == Guid.Empty)
+            {
+                return NotFound();
+            }
+            var deletePersonResponse = _personService.GetPerson(new GetPersonRequest() { Id = (Guid)id });
+            if (deletePersonResponse == null)
+            {
+                return NotFound();
+            }
+
+            return View(deletePersonResponse.Person);
+        }
+
+        //POST
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeletePOST(Guid? id)
+        {
+            var getPersonResponse = _personService.GetPerson(new GetPersonRequest() { Id = (Guid)id });
+            if (getPersonResponse == null)
+            {
+                return NotFound();
+            }
+            _personService.DeletePerson(new DeletePersonRequest() { Id = (Guid)id });
+            return RedirectToAction("AllPersons");
+
+        }
+
 
 
     }

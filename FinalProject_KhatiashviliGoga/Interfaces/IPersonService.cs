@@ -9,5 +9,8 @@ namespace FinalProject_KhatiashviliGoga.Interfaces
         IEnumerable<Person> GetPersons();
         GetPersonResponse GetPerson(GetPersonRequest request);
         CreatePersonResponse CreatePerson(PersonModel request);
+
+        UpdatePersonResponse UpdatePerson(UpdatePersonRequest request);
+        DeletePersonResponse DeletePerson(DeletePersonRequest request);
     }
 }

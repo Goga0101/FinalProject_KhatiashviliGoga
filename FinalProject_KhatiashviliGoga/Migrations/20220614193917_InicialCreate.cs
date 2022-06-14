@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FinalProject_KhatiashviliGoga.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InicialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,8 +14,8 @@ namespace FinalProject_KhatiashviliGoga.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -28,12 +28,12 @@ namespace FinalProject_KhatiashviliGoga.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Language = table.Column<int>(type: "int", nullable: false),
-                    PersonalNumber = table.Column<int>(type: "int", nullable: false),
+                    PersonalNumber = table.Column<Guid>(type: "uniqueidentifier", maxLength: 11, nullable: false),
                     OrganizationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>

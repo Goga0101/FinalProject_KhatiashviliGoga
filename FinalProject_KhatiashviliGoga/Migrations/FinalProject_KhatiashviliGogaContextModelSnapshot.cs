@@ -75,9 +75,9 @@ namespace FinalProject_KhatiashviliGoga.Migrations
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PersonalNumber")
+                    b.Property<Guid>("PersonalNumber")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

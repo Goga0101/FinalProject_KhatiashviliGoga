@@ -44,6 +44,40 @@ namespace FinalProject_KhatiashviliGoga.Services
             return response;
         }
 
+
+        public UpdateOrganizationResponse UpdateOrganization(UpdateOrganizationRequest updateOrganizationRequest)
+        {
+            var existingOrganizationToUpdate = _context.Organizations.Find(updateOrganizationRequest.OrganizationToUpdate.Id);
+
+            if (existingOrganizationToUpdate == null)
+            {
+                throw new DbUpdateException($"Organization with Id {updateOrganizationRequest.OrganizationToUpdate.Id} does not exist ");
+            }
+
+            _organizationMapper.MapFromModelToEntity(updateOrganizationRequest.OrganizationToUpdate, existingOrganizationToUpdate);
+            _context.SaveChanges();
+
+            return new UpdateOrganizationResponse { UpdatedOrganization = updateOrganizationRequest.OrganizationToUpdate };
+        }
+
+        public DeleteOrganizationResponse DeleteOrganization(DeleteOrganizationRequest deleteOrganizationRequest)
+        {
+            var organizationToDelete = _context.Organizations.Find(deleteOrganizationRequest.Id);
+            if (organizationToDelete == null)
+            {
+                throw new DbUpdateException($"Organization with id '{deleteOrganizationRequest.Id}' doesn't exist.");
+            }
+
+            _context.Organizations.Remove(organizationToDelete);
+            _context.SaveChanges();
+
+            return new DeleteOrganizationResponse();
+        }
+
+
+
+
+
         public IEnumerable<Organization> GetOrganizations()
         {
             return _context.Organizations;
