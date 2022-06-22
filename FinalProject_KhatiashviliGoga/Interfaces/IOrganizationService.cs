@@ -5,7 +5,7 @@ namespace FinalProject_KhatiashviliGoga.Interfaces
 {
     public interface IOrganizationService
     {
-        IEnumerable<Organization> GetOrganizations();
+        IEnumerable<OrganizationModel> GetOrganizations();
         GetOrganizationResponse GetOrganization(GetOrganizationRequest request);
         CreateOrganizationResponse CreateOrganization(OrganizationModel request);
 

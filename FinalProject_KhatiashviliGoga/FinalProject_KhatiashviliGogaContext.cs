@@ -2,6 +2,8 @@
 using FinalProject_KhatiashviliGoga.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
+
+
 namespace FinalProject_KhatiashviliGoga
 {
     public class FinalProject_KhatiashviliGogaContext : DbContext

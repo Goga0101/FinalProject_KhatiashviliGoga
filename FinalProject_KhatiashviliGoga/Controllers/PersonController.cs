@@ -1,8 +1,9 @@
 ﻿using FinalProject_KhatiashviliGoga.Entities;
 using FinalProject_KhatiashviliGoga.Interfaces;
 using FinalProject_KhatiashviliGoga.Models;
+using FinalProject_KhatiashviliGoga.Models.Person;
 using Microsoft.AspNetCore.Mvc;
-using MyFirstProjectMVC1.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FinalProject_KhatiashviliGoga.Controllers
 {
@@ -19,18 +20,28 @@ namespace FinalProject_KhatiashviliGoga.Controllers
 
         public IActionResult AllPersons()
         {
-
-            IEnumerable<Person> persons = _personService.GetPersons();
+            ViewBag.ListSelectList = new SelectList(GetOrganizationLists(),"Id" , "Title");
+            IEnumerable<PersonModel> persons = _personService.GetPersons();
             return View(persons);
         }
 
+        private List<OrganizationList> GetOrganizationLists()
+        {
+            var list = new List<OrganizationList>();
+            list.Add(new OrganizationList() { Id = 1, Title = "New Company1" });
+            list.Add(new OrganizationList() { Id = 2, Title = "New Company2" });
+            list.Add(new OrganizationList() { Id = 3, Title = "New Company3" });
+            list.Add(new OrganizationList() { Id = 4, Title = "New Company4" });
 
+            return list;
+        }
 
         //GET
         public IActionResult Create()
         {
             return View();
         }
+
 
         //POST
         [HttpPost]
@@ -45,6 +56,7 @@ namespace FinalProject_KhatiashviliGoga.Controllers
             }
             return View(createPersonResponse.CreatedPerson);
         }
+
 
 
         //GET

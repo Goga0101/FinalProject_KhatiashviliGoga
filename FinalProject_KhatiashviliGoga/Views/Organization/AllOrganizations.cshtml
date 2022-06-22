@@ -1,4 +1,4 @@
-﻿@@model IEnumerable<FinalProject_KhatiashviliGoga.Entities.Organization >
+﻿@model IEnumerable<FinalProject_KhatiashviliGoga.Models.OrganizationModel>
 
 @{
     ViewData["Title"] = "All Organizations";
@@ -15,7 +15,7 @@
         </div>
           <div class="col-6 text-end">
             <a asp-controller="Organization" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> &nbsp; Create New Organization
+                <i class="bi bi-plus-circle"></i> &nbsp; Add New Organization
             </a>
         </div>
     </div>
@@ -25,16 +25,16 @@
         <thead>
         <tr>
             <th>
-                Organization Id
+                 Id
             </th>
             <th>
-                Organization Name
+                 Name
             </th>
             <th>
-                Organization Adress
+                 Adress
             </th>
             <th>
-                Organization ParentId
+                 ParentOrganization
             </th>
             <th>Commands </th>
 
@@ -54,7 +54,7 @@
                     @obj.Adress
                 </td>
                 <td width="40%">
-                    @obj.ParentId
+                    @obj.ParentOrganization
                 </td>
                  <td>
                     <div class="w-75 btn-group" role="group">

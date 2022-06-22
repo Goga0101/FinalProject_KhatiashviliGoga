@@ -3,7 +3,7 @@ using FinalProject_KhatiashviliGoga.Interfaces;
 using FinalProject_KhatiashviliGoga.Mapping;
 using FinalProject_KhatiashviliGoga.Models;
 using Microsoft.EntityFrameworkCore;
-using MyFirstProjectMVC1.Models;
+
 
 namespace FinalProject_KhatiashviliGoga.Services
 {
@@ -80,9 +80,15 @@ namespace FinalProject_KhatiashviliGoga.Services
 
 
 
-        public IEnumerable<Person> GetPersons()
-        {    
-              return _context.Persons;
+        public IEnumerable<PersonModel> GetPersons()
+        {
+            var persons = new List<PersonModel>();
+            foreach (var item in _context.Persons)
+            {
+                persons.Add(_personMapper.MapFromEntityToModel(item));
+            }
+
+            return persons;
         }
     }
 

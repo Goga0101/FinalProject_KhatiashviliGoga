@@ -6,17 +6,15 @@ namespace FinalProject_KhatiashviliGoga.Entities
     {
         public Guid Id { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(100),MinLength(2)]
 
-        [MinLength(2)]
+        
         public string Name { get; set; }
 
-        [MaxLength(200)]
-
-        [MinLength(2)]
+        [MaxLength(200), MinLength(2)]
 
         public string Adress { get; set; }
 
-        public Guid ParentId { get; set; }
+        public string? ParentOrganization { get; set; }
     }
 }

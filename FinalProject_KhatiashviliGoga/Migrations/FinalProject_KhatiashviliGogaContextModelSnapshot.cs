@@ -38,8 +38,8 @@ namespace FinalProject_KhatiashviliGoga.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("ParentId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ParentOrganization")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -75,9 +75,10 @@ namespace FinalProject_KhatiashviliGoga.Migrations
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PersonalNumber")
+                    b.Property<string>("PersonalNumber")
+                        .IsRequired()
                         .HasMaxLength(11)
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(11)");
 
                     b.HasKey("Id");
 

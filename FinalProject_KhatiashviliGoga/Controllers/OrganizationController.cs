@@ -19,7 +19,7 @@ namespace FinalProject_KhatiashviliGoga.Controllers
         public IActionResult AllOrganizations()
         {
 
-            IEnumerable<Organization> organizations = _organizationService.GetOrganizations();
+            IEnumerable<OrganizationModel> organizations = _organizationService.GetOrganizations();
             return View(organizations);
         }
 

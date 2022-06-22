@@ -1,4 +1,4 @@
-﻿@@model IEnumerable<FinalProject_KhatiashviliGoga.Entities.Person >
+﻿@model IEnumerable<FinalProject_KhatiashviliGoga.Models.PersonModel >
 
 @{
     ViewData["Title"] = "All Persons";
@@ -15,7 +15,7 @@
         </div>
           <div class="col-6 text-end">
             <a asp-controller="Person" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> &nbsp; Create New Person
+                <i class="bi bi-plus-circle"></i> &nbsp; Add New Person
             </a>
         </div>
     </div>
@@ -25,28 +25,28 @@
         <thead>
         <tr>
             <th>
-                Person Id
+                 Id
             </th>
             <th>
-                Person Name
+                 Name
             </th>
             <th>
-                Person LastName
+                 LastName
             </th>
             <th>
-                Person DateOfBirth
+                 DateOfBirth
             </th>
             <th>
-                Person Image
+                 Image
             </th>
             <th>
-                Person Language
+                 Language
             </th>
             <th>
-                Person PersonalNumber
+                 PersonalNumber
             </th>
               <th>
-                Person OrganizationId
+                 OrganizationId
             </th>
            @*   <th>
                 Person Organization
@@ -91,9 +91,9 @@
                 </td>*@
                  <td>
                     <div class="w-75 btn-group" role="group">
-                        <a asp-controller="Organization" asp-action="Edit" asp-route-id="@obj.Id"
+                        <a asp-controller="Person" asp-action="Edit" asp-route-id="@obj.Id"
                            class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
-                        <a asp-controller="Organization" asp-action="Delete" asp-route-id="@obj.Id"
+                        <a asp-controller="Person" asp-action="Delete" asp-route-id="@obj.Id"
                            class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                     </div>
                 </td>

@@ -1,4 +1,4 @@
-﻿namespace MyFirstProjectMVC1.Models
+﻿namespace FinalProject_KhatiashviliGoga.Models
 {
     public class GetPersonRequest
     {

@@ -78,9 +78,18 @@ namespace FinalProject_KhatiashviliGoga.Services
 
 
 
-        public IEnumerable<Organization> GetOrganizations()
+        public IEnumerable<OrganizationModel> GetOrganizations()
         {
-            return _context.Organizations;
+            var organizations = new List<OrganizationModel>();
+
+            foreach( var item in _context.Organizations)
+            {
+                organizations.Add(_organizationMapper.MapFromEntityToModel(item));
+
+                
+            }
+
+            return organizations;
         }
     }
 }

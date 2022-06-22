@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FinalProject_KhatiashviliGoga.Migrations
 {
-    public partial class InicialCreate : Migration
+    public partial class InicailCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace FinalProject_KhatiashviliGoga.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ParentOrganization = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -33,7 +33,7 @@ namespace FinalProject_KhatiashviliGoga.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Language = table.Column<int>(type: "int", nullable: false),
-                    PersonalNumber = table.Column<Guid>(type: "uniqueidentifier", maxLength: 11, nullable: false),
+                    PersonalNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     OrganizationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
