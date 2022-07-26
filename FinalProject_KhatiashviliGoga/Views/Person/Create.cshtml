@@ -42,7 +42,7 @@
         </div>
         <div class="mb-3">
             <label asp-for="OrganizationId"></label>
-            <input asp-for="OrganizationId" class="form-control" />
+            <input asp-for="OrganizationId" class="form-control" asp-items ="new SelectList(ViewBag.OrganizationId)" />
         </div>
        @* <div class="mb-3">
             <label asp-for="Organization"></label>
@@ -53,4 +53,8 @@
             Back to List
         </a>
     </div>
-    </form>
+   
+
+
+
+</form>

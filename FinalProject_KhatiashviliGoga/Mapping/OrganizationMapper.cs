@@ -11,7 +11,7 @@ namespace FinalProject_KhatiashviliGoga.Mapping
 
             Name = source.Name,
             Adress = source.Adress,
-            ParentOrganization = source.ParentOrganization,
+            ParentId = source.ParentId,
             Id = source.Id,
 
 
@@ -30,7 +30,7 @@ namespace FinalProject_KhatiashviliGoga.Mapping
         {
             target.Name = source.Name;
             target.Adress = source.Adress;
-            target.ParentOrganization = source.ParentOrganization; 
+            target.ParentId = source.ParentId; 
             target.Id = source.Id;
         }
     }

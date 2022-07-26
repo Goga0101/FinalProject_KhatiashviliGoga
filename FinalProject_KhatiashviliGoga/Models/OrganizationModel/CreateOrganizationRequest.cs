@@ -15,6 +15,6 @@ namespace FinalProject_KhatiashviliGoga.Models
 
         public string Adress { get; set; }
 
-        public string? ParentOrganization { get; set; }
+        public Guid? ParentId { get; set; }
     }
 }

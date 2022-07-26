@@ -4,41 +4,56 @@ using FinalProject_KhatiashviliGoga.Models;
 using FinalProject_KhatiashviliGoga.Models.Person;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace FinalProject_KhatiashviliGoga.Controllers
 {
     public class PersonController : Controller
     {
+        private readonly IHostingEnvironment _environment;
 
-
+       
         private readonly IPersonService _personService;
 
-        public PersonController(IPersonService personService)
+        public PersonController(IPersonService personService, IHostingEnvironment e)
         {
             _personService = personService;
+            _environment = e;
         }
 
         public IActionResult AllPersons()
         {
-            ViewBag.ListSelectList = new SelectList(GetOrganizationLists(),"Id" , "Title");
+           
             IEnumerable<PersonModel> persons = _personService.GetPersons();
             return View(persons);
         }
 
-        private List<OrganizationList> GetOrganizationLists()
-        {
-            var list = new List<OrganizationList>();
-            list.Add(new OrganizationList() { Id = 1, Title = "New Company1" });
-            list.Add(new OrganizationList() { Id = 2, Title = "New Company2" });
-            list.Add(new OrganizationList() { Id = 3, Title = "New Company3" });
-            list.Add(new OrganizationList() { Id = 4, Title = "New Company4" });
 
-            return list;
+
+        public IActionResult ShowFields(string Image, IFormFile pic)
+        {
+            ViewData["fname"] = Image;
+            if (pic != null)
+            {
+                var fileName = Path.Combine(_environment.WebRootPath, Path.GetFileName(pic.FileName));
+                pic.CopyTo(new FileStream(fileName, FileMode.Create));
+                ViewData["fileLocation"] = fileName;
+                //ViewData["fileLocation"] ="/"+Path.GetFileName(pic.FileName); //Visual   
+            }
+            return View();
         }
 
+
+
+
         //GET
-        public IActionResult Create()
+        public IActionResult Create(bool isSuccess = false , int organizationId = 0)
         {
+            ViewBag.OrganizationId = new List<string>() { " 1 ", "2 ", "3 " };
+
+
+            ViewBag.IsSuccess = isSuccess;
+            ViewBag.OrganizationId = organizationId;
             return View();
         }
 
